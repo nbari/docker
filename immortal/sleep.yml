@@ -1,0 +1,4 @@
+cmd: sleep 5
+log:
+  file: /tmp/sleep.log
+  size: 1
