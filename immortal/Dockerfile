@@ -8,10 +8,11 @@ ENV GOROOT /usr/local/go
 ENV PATH /usr/local/go/bin:/go/bin:/usr/local/bin:$PATH
 ENV IMMORTAL_DIR=/go/src/github.com/immortal
 
-RUN mkdir -p $IMMORTAL_DIR
-RUN git clone https://github.com/immortal/immortal.git $IMMORTAL_DIR/immortal
-RUN cd $IMMORTAL_DIR/immortal && make install
-RUN mkdir /etc/immortal
+RUN mkdir -p $IMMORTAL_DIR && \
+    git clone https://github.com/immortal/immortal.git $IMMORTAL_DIR/immortal && \
+    cd $IMMORTAL_DIR/immortal && \
+    make install && \
+    mkdir /etc/immortal
 
 ADD start.sh /srv/start.sh
 ADD sleep.yml /etc/immortal/
@@ -19,5 +20,3 @@ ADD sleep.yml /etc/immortal/
 RUN chmod +x /srv/start.sh
 
 ENTRYPOINT "/srv/start.sh" && /bin/bash
-
-COPY sleep.yml /etc/immortal/

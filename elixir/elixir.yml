@@ -1,0 +1,5 @@
+cmd: mix run --no-halt
+cwd: /src/example
+log:
+  file: /tmp/elixir.log
+  size: 1
