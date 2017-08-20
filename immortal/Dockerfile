@@ -6,7 +6,7 @@ RUN curl -s https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz | t
 ENV GOPATH /go
 ENV GOROOT /usr/local/go
 ENV PATH /usr/local/go/bin:/go/bin:/usr/local/bin:$PATH
-ENV IMMORTAL_DIR=/go/src/github.com/immortal
+ENV IMMORTAL_DIR /go/src/github.com/immortal
 
 RUN mkdir -p $IMMORTAL_DIR && \
     git clone https://github.com/immortal/immortal.git $IMMORTAL_DIR/immortal && \
