@@ -2,7 +2,10 @@
 
 > Twelve-factor app processes should never daemonize or write PID files. Instead, rely on the operating system’s process manager (such as Upstart, a distributed process manager on a cloud platform, or a tool like Foreman in development) to manage output streams, respond to crashed processes, and handle user-initiated restarts and shutdowns. https://12factor.net/concurrency
 
-A word of caution, erlang  has its own supervisor model and probably is the best way to use it to take full advantage of the language, the approach presented here is only for demonstrative purposes but far from being a best practices due the nature of erlang supervisor model.
+A word of caution, Erlang has its own supervisor model and probably is the best
+way to use it to take full advantage of the language, the approach presented
+here is only for demonstrative purposes but far from being the best practice due
+to the nature of Erlang supervisor model.
 
 # Run
 
