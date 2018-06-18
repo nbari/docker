@@ -1,0 +1,35 @@
+# create run.yml files to be used with immortal
+# to mock the nomber of cores use the variable: ansible_processor_cores
+# needs immortal to work: https://immortal.run/source/
+---
+- hosts: localhost
+  connection: local
+  # mock cores
+  vars:
+    ansible_processor_cores: 8
+
+  tasks:
+    - name: Parse recipie.yml
+      set_fact:
+        recipie: "{{ lookup('file','recipie.yml') | from_yaml }}"
+
+    - name: Calculate process to spawn
+      set_fact:
+        vms: "{{ (ansible_processor_cores|int / recipie.cores) | int | abs }}"
+
+    - name: Stop running process
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_fileglob:
+        - "/etc/immortal/*.yml"
+
+    - name: Create new run scripts
+      copy:
+        dest: "/etc/immortal/wrk-{{ item }}.yml"
+        content: |
+          # {{ ansible_date_time.iso8601 }}
+          cmd: vmstat {{ item }}
+          log:
+            file: "/var/log/wrk-{{ item }}.log"
+      with_sequence: count="{{ vms }}"

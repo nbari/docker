@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y --no-install-recommends -q curl build-essential ca-certificates git python3-pip python3-dev net-tools
+RUN apt-get update && apt-get install -y --no-install-recommends -q curl build-essential ca-certificates git python3-pip python3-dev net-tools python-yaml python-jinja2 python-pycurl vim
 RUN curl -s https://storage.googleapis.com/golang/go1.10.3.linux-amd64.tar.gz | tar -C /usr/local -xz
 RUN pip3 install setuptools
 RUN pip3 install ansible
@@ -17,8 +17,14 @@ RUN mkdir -p $IMMORTAL_DIR && \
     mkdir /etc/immortal
 
 ADD start.sh /srv/start.sh
-ADD test.yml /etc/immortal/
-
 RUN chmod +x /srv/start.sh
+
+ADD inventory /etc/ansible/hosts
+ADD playbooks/ /etc/ansible/
+ADD recipie.yml /etc/ansible/
+
+WORKDIR /etc/ansible
+
+RUN ansible-playbook /etc/ansible/immortal.yml -c local
 
 ENTRYPOINT "/srv/start.sh" && /bin/bash
