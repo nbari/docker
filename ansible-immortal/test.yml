@@ -1,0 +1,4 @@
+cmd: vmstat 1
+log:
+  file: /tmp/test.log
+  size: 1
