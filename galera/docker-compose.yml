@@ -7,13 +7,8 @@ services:
     ports:
       - 13306:3306
     environment:
-      - CLUSTER_ADDRESS=gcomm://
-      - CLUSTER_NAME=maria_cluster
-      - GALERA=On
-      - MYSQL_DATABASE=maria
+      - MYSQL_DATABASE=galeratest
       - MYSQL_ROOT_PASSWORD=test
-      - NODE_NAME=node1
-      - REPLICATION_PASSWORD=test
     command: --wsrep-new-cluster
     volumes:
       - ${PWD}/node1/conf.d/:/etc/mysql/conf.d
@@ -26,13 +21,9 @@ services:
     ports:
       - 23306:3306
     environment:
-      - CLUSTER_ADDRESS=gcomm://node1
-      - CLUSTER_NAME=maria_cluster
-      - GALERA=On
       - MYSQL_ROOT_PASSWORD=test
-      - NODE_NAME=node2
-      - REPLICATION_PASSWORD=test
     volumes:
+      - ${PWD}/node2/conf.d/:/etc/mysql/conf.d
       - ${PWD}/node2/db:/var/lib/mysql
   node3:
     image: mariadb
@@ -42,11 +33,7 @@ services:
     ports:
       - 33306:3306
     environment:
-      - CLUSTER_ADDRESS=gcomm://node1
-      - CLUSTER_NAME=maria_cluster
-      - GALERA=On
       - MYSQL_ROOT_PASSWORD=test
-      - NODE_NAME=node3
-      - REPLICATION_PASSWORD=test
     volumes:
+      - ${PWD}/node3/conf.d/:/etc/mysql/conf.d
       - ${PWD}/node3/db:/var/lib/mysql
