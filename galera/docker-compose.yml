@@ -12,7 +12,7 @@ services:
     command: --wsrep-new-cluster
     volumes:
       - ${PWD}/node1/conf.d/:/etc/mysql/conf.d
-      - ${PWD}/node1/db:/var/lib/mysql
+      - ${PWD}/node1/db/:/var/lib/mysql
   node2:
     image: mariadb
     container_name: node2
@@ -24,7 +24,7 @@ services:
       - MYSQL_ROOT_PASSWORD=test
     volumes:
       - ${PWD}/node2/conf.d/:/etc/mysql/conf.d
-      - ${PWD}/node2/db:/var/lib/mysql
+      - ${PWD}/node2/db/:/var/lib/mysql
   node3:
     image: mariadb
     container_name: node3
@@ -36,4 +36,4 @@ services:
       - MYSQL_ROOT_PASSWORD=test
     volumes:
       - ${PWD}/node3/conf.d/:/etc/mysql/conf.d
-      - ${PWD}/node3/db:/var/lib/mysql
+      - ${PWD}/node3/db/:/var/lib/mysql
