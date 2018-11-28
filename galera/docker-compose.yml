@@ -2,44 +2,51 @@
 version: '3'
 services:
   node1:
-    image: hauptmedia/mariadb:10.1
-    hostname: node1
+    image: mariadb
+    container_name: node1
     ports:
       - 13306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=test
-      - REPLICATION_PASSWORD=test
-      - MYSQL_DATABASE=maria
-      - MYSQL_USER=maria
-      - MYSQL_PASSWORD=test
-      - GALERA=On
-      - NODE_NAME=node1
-      - CLUSTER_NAME=maria_cluster
       - CLUSTER_ADDRESS=gcomm://
+      - CLUSTER_NAME=maria_cluster
+      - GALERA=On
+      - MYSQL_DATABASE=maria
+      - MYSQL_ROOT_PASSWORD=test
+      - NODE_NAME=node1
+      - REPLICATION_PASSWORD=test
     command: --wsrep-new-cluster
+    volumes:
+      - ${PWD}/node1/conf.d/:/etc/mysql/conf.d
+      - ${PWD}/node1/db:/var/lib/mysql
   node2:
-    image: hauptmedia/mariadb:10.1
-    hostname: node2
-    links:
+    image: mariadb
+    container_name: node2
+    depends_on:
       - node1
     ports:
       - 23306:3306
     environment:
-      - REPLICATION_PASSWORD=test
-      - GALERA=On
-      - NODE_NAME=node2
-      - CLUSTER_NAME=maria_cluster
       - CLUSTER_ADDRESS=gcomm://node1
+      - CLUSTER_NAME=maria_cluster
+      - GALERA=On
+      - MYSQL_ROOT_PASSWORD=test
+      - NODE_NAME=node2
+      - REPLICATION_PASSWORD=test
+    volumes:
+      - ${PWD}/node2/db:/var/lib/mysql
   node3:
-    image: hauptmedia/mariadb:10.1
-    hostname: node3
-    links:
+    image: mariadb
+    container_name: node3
+    depends_on:
       - node1
     ports:
       - 33306:3306
     environment:
-      - REPLICATION_PASSWORD=test
-      - GALERA=On
-      - NODE_NAME=node3
-      - CLUSTER_NAME=maria_cluster
       - CLUSTER_ADDRESS=gcomm://node1
+      - CLUSTER_NAME=maria_cluster
+      - GALERA=On
+      - MYSQL_ROOT_PASSWORD=test
+      - NODE_NAME=node3
+      - REPLICATION_PASSWORD=test
+    volumes:
+      - ${PWD}/node3/db:/var/lib/mysql
