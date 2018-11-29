@@ -1,12 +1,16 @@
-Create first node1:
+First start the cluster `wsrep-new-cluster` in node1:
 
     docker-compose up node1
 
-Then node2 and node3
+Then while running start the other nodes:
 
-    docker-compose node2 node3
+    docker-compose up node2 node3
 
-It could fail (need to find a way to improve create full db from 0), check cluster status from node1:
+Check the cluster status:
+
+    mysql -h 127.0.0.1 --port 13306 -u root -p
+
+Then:
 
     mysql> SHOW GLOBAL STATUS LIKE 'wsrep_ready';
     +---------------+-------+
@@ -23,3 +27,10 @@ And
     +--------------------+-------+
     | wsrep_cluster_size | 3     |
     +--------------------+-------+
+
+Then edit the `docker-compose` file and remove/comment:
+
+     command: --wsrep-new-cluster
+
+It should be only when starting the cluster, next by typing only make the
+cluster should be up
