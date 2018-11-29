@@ -1,4 +1,4 @@
-.PHONY: all build down ps
+.PHONY: all build down ps clean
 
 all:
 	docker-compose up
@@ -11,3 +11,6 @@ ps:
 
 down:
 	docker-compose down
+
+clean:
+	@find . -type d -name "db" -execdir sh -c 'rm -rf {}/*' \;

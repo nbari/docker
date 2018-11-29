@@ -1,8 +1,0 @@
-[galera]
-wsrep_on=ON
-wsrep_provider=/usr/lib/galera/libgalera_smm.so
-wsrep_cluster_address=gcomm://node1
-wsrep_node_name=node2
-wsrep_cluster_name=maria_cluster
-binlog_format=row
-default_storage_engine=InnoDB
