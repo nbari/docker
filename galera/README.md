@@ -1,14 +1,22 @@
-First start the cluster `wsrep-new-cluster` in node1:
+To do a clean setup:
 
-    docker-compose up node1
+    make clean
+
+Then
+
+    ./start.sh
+
+If want to doit by steps, first start the cluster `wsrep-new-cluster` in node1:
+
+    docker-compose up node0
 
 Then while running start the other nodes:
 
-    docker-compose up node2 node3
+    docker-compose up node1 node2 node3 haproxy
 
 Check the cluster status:
 
-    mysql -h 127.0.0.1 --port 13306 -u root -p
+    mysql -h 127.0.0.1 --port 3123 -u root -p
 
 Then:
 
@@ -25,12 +33,5 @@ And
     +--------------------+-------+
     | Variable_name      | Value |
     +--------------------+-------+
-    | wsrep_cluster_size | 3     |
+    | wsrep_cluster_size | 4     |
     +--------------------+-------+
-
-Then edit the `docker-compose` file and remove/comment:
-
-     command: --wsrep-new-cluster
-
-It should be only when starting the cluster, next by typing only make the
-cluster should be up
