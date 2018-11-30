@@ -50,6 +50,7 @@ services:
     image: haproxy:latest
     container_name: haproxy
     ports:
+      - 8080:80
       - 3123:3306
     volumes:
       - ${PWD}/haproxy/:/usr/local/etc/haproxy/
