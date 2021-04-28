@@ -9,7 +9,7 @@ services:
       - 3306:3306
     environment:
       MYSQL_DATABASE: world
-      MYSQL_ROOT_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: secret
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
       - ${PWD}/mariadb/db/:/var/lib/mysql
