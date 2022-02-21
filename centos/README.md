@@ -5,7 +5,7 @@ make to enter the container
 add mariadb repo
 
     # curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
-    # sh mariadb_repo_setup
+    # sh mariadb_repo_setup --mariadb-server-version=10.6
 
 Then use:
 
