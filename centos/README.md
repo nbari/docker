@@ -1,6 +1,10 @@
+Build the image:
+
+    docker build -t centos .
+
 Use the image to fetch latest packages, for example:
 
-make to enter the container
+    $ make (to enter the container)
 
 add mariadb repo
 
