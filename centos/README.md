@@ -9,7 +9,7 @@ Use the image to fetch latest packages, for example:
 add mariadb repo
 
     # curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
-    # sh mariadb_repo_setup --mariadb-server-version=10.6
+    # sh mariadb_repo_setup --mariadb-server-version=10.8
 
 Then use:
 
