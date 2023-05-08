@@ -19,6 +19,13 @@ Example for postgres:
 
     dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
     dnf -qy module disable postgresql
-    yumdownloader --destdir=/data --resolve postgresql14-server postgresql14-contrib postgresql14-devel pgbackrest  python3-psycopg2
+    yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+
+    yumdownloader --destdir=/data --resolve postgresql15-server postgresql15-contrib postgresql15-devel pgbackrest python3-psycopg2 patroni patroni-consul consul
+
+Maybe need to run:
+
+    dnf install epel-release -y
+    dnf --enablerepo=powertools install perl-IPC-Run -y
 
 rpms will be in the local /data dir
