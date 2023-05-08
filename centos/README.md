@@ -29,3 +29,8 @@ Maybe need to run:
     dnf --enablerepo=powertools install perl-IPC-Run -y
 
 rpms will be in the local /data dir
+
+
+Repos to add:
+
+    sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
