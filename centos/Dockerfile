@@ -1,6 +1,6 @@
-FROM redhat/ubi9
+# FROM redhat/ubi9
 
-# FROM tgagor/centos-stream
+FROM tgagor/centos-stream
 
 RUN yum install -y yum-utils
 
