@@ -3,7 +3,7 @@
 all: build
 
 run:
-	docker run -t -i -v ${PWD}/data:/data -t rocky8 .
+	docker run --platform linux/amd64  -t -i -v ${PWD}/data:/data -t rocky8
 
 build:
-	docker build -t rocky8 .
+	docker buildx build --platform linux/amd64 -t rocky8 .

@@ -30,6 +30,9 @@ Maybe need to run:
 
 rpms will be in the local /data dir
 
+For patroni + etcd:
+
+    yumdownloader --destdir=/data --resolve postgresql16-server postgresql16-contrib postgresql16-devel pgbackrest python3-psycopg2 patroni patroni-etcd
 
 Repos to add:
 
