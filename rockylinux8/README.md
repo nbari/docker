@@ -32,7 +32,7 @@ rpms will be in the local /data dir
 
 For patroni + etcd:
 
-    yumdownloader --destdir=/data --resolve postgresql16 postgresql16-server postgresql16-contrib postgresql16-devel pgbackrest pgbackrest-debuginfo patroni patroni-etcd postgresql16-libs pg_top pg_squeeze_16 pgcopydb pgaudit_16 pg_stat_monitor_16 pg_activity
+    yumdownloader --destdir=/data --resolve postgresql16 postgresql16-server postgresql16-contrib postgresql16-devel pgbackrest pgbackrest-debuginfo patroni patroni-etcd postgresql16-libs pg_top pg_squeeze_16 pgcopydb pgaudit_16 pg_stat_monitor_16 pg_activity pg_partman_16 python3-pyyaml
 
 Repos to add:
 
